@@ -1,0 +1,25 @@
+// 5
+
+#include "stdio.h"
+#include <stdbool.h>
+
+int main()
+{
+	int nums[10] = {1, 69, 78, 155, 61548, 8795};
+
+    for (int i = 0; i < 6; i++) {
+        int num = nums[i];
+        bool hasOne = false;
+        int j = 0;
+        num >>= 7;
+        while (j < 5 && !hasOne) {
+            if (num & 1 == 1) {
+                hasOne = true;
+                printf("%d\n", nums[i]);
+	        }    
+	        
+	        num >>= 1;
+	        j++;
+        }
+    }
+}

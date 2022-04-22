@@ -1,0 +1,23 @@
+// N 15
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char t[] = "  adasda dgdfg dfgdfg  gdfgdfg  gdfgdf    gdfgdfgdf    ";
+
+    int i = 0;
+    while (i < strlen(t)) {
+        if (((i == 0 || i == strlen - 1) || (t[i - 1] != ' ' && t[i + 1] == ' ')) && t[i] == ' ') {
+            memmove(&t[i], &t[i + 1], strlen(t) - i);
+        } else {
+            i++;
+        }
+    }
+    
+    printf("%s", t);
+    
+    return 0;
+}

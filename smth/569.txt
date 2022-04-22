@@ -1,0 +1,38 @@
+// 569
+
+#include <stdio.h>
+#include <ctype.h>
+#include <stdbool.h>
+
+#define m 4
+#define n 5
+
+int main () {
+    int arr[m][n] = {
+        {1, 2, 3, 4, 1},
+        {2, 3, 4, 5, 2},
+        {1, 5, 5, 4, 5},
+        {6, 9, 8, 7, 9}
+    };
+
+    int count = 0;
+    for (int i = 0; i < n; i++) {
+        int j = 0;
+        bool sorted = true;
+        while (j < m - 1 && sorted) {
+            if (arr[j][i] >= arr[j + 1][i]) {
+                sorted = false;
+            }
+
+            j++;
+        }
+
+        if (sorted) {
+            count++;
+        }
+    }
+
+    printf("%d\n", count);
+
+    return 0;
+}

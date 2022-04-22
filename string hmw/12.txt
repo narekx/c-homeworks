@@ -1,0 +1,80 @@
+//  12
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#include <ctype.h>
+
+bool forStart (char c)
+{
+    char symbols[6] = {'+', '-', '*', '/', '(', '\0'};
+    int i = 0;
+    while (i < 5) {
+        if (symbols[i] == c) {
+            return true;
+        }
+        
+        i++;
+    }
+    
+    return false;
+}
+
+bool forEnd (char c)
+{
+    char symbols[12] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ')', '\0'};
+    int i = 0;
+    while (i < 11) {
+        if (symbols[i] == c) {
+            return true;
+        }
+        
+        i++;
+    }
+    
+    return false;
+}
+
+int main()
+{
+    char str[] = "(6*33+2*(4/2)";
+    bool t = true;
+    char start = '(';
+    char end = ')';
+    int count = 0;
+    int i = 0;
+    while (i < strlen(str) && count >= 0 && t) {
+        if (str[i] == start) {
+            if (!forStart(str[i - 1]) && i > 0) {
+                printf("1\n");
+                t = false;
+            }
+            
+            count++;
+        }
+        
+        if (str[i] == end) {
+            if (i == 0) {
+                printf("2\n");
+                t = false;
+            }
+            
+            if (!forEnd(str[i - 1]) || (!forStart(str[i + 1]) && i < strlen(str) - 1)) {
+                printf("%d\n", i);
+                t = false;
+            }
+            
+            count--;
+        }
+        
+        i++;
+    }
+    
+    if (count != 0) {
+        t = false;
+    }
+    
+    printf("%s", t ? "true" : "false");
+
+    return 0;
+}

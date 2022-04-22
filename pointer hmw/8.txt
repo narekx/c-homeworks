@@ -1,0 +1,35 @@
+// 8
+
+#include <stdio.h>
+#include <stdbool.h>
+
+#define N  12
+
+int main()
+{
+    int x[N] = {2, 5, 6, 7, 5, 2, -4, 7, 1, 0, 2, 3};
+
+    int *minus = NULL;
+    int *px = x;
+    while (px < x + N) {
+        if (*px < 0) {
+            minus = px;
+            break;
+        }
+
+        px++;
+    }
+
+    int sum = 0;
+    if (minus) {
+        int product = 1;
+        for (int *p = x; p < minus; p++) {
+            product *= *p;
+            sum += product;
+        }
+    }
+
+    printf("%d\n", sum);
+	
+	return 0;
+}

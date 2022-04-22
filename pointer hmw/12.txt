@@ -1,0 +1,31 @@
+// 12
+
+#include <stdio.h>
+#include <stdbool.h>
+
+#define N  10
+
+int main()
+{
+    int x[N] = {0, 0, 2, 0, 0, 0, 0, 0, 7, 8};
+    bool t = false;
+
+    for (int *p = x; p < x + N; p++) {
+        if (*p == 0) {
+            int count = 0;
+            while (*p == 0) {
+                count++;
+                *p++;
+            }
+
+            if (count == 5) {
+                t = true;
+                break;
+            }
+        }
+    }
+
+    printf("%s\n", t ? "true" : "false");
+
+	return 0;
+}

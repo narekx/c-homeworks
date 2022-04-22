@@ -1,0 +1,46 @@
+// 565
+
+
+#include <stdio.h>
+#include <stdbool.h>
+
+#define m 3
+#define n 4
+
+int main() {
+    int arr[m][n] = {
+        {5, 5, 7, 8},
+        {4, 4, 16, 10}, 
+        {10, 8, 10, 2}
+    };
+    
+    int i = 0;
+    int uniqueCount = 0;
+    while (i < m) {
+        int j = 0;
+        bool isUnique = true;
+        while (j < n && isUnique) {
+            int k = j + 1;
+            while (k < n && isUnique) {
+                if (arr[i][j] == arr[i][k]) {
+                    isUnique = false;
+                }
+                
+                k++;
+            }
+            j++;
+        }
+        if(isUnique) {
+            printf("%d\n", i);
+            uniqueCount++;
+        }
+        
+        i++;    
+    }
+    
+    if (uniqueCount == 0) {
+        printf("%s", "NO");
+    }
+    
+    return 0;
+}

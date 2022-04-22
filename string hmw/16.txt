@@ -1,0 +1,71 @@
+// 16
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdbool.h>
+
+bool isVowel(char c)
+{
+    char vowels[] = "aeiouy";
+    for (int i = 0; i < strlen(vowels); i++) {
+        if (c == vowels[i]) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+int main () {
+    char str[] = "asdaiisd asdaeesd asdasd dfgdfgdf";
+    char words[10][10];
+    char vowels[10];
+    int maxVowelsCount = 0;
+
+    int i = 0;
+    int j = 0;
+    while (i < strlen(str)) {
+        if (isalpha(str[i])) {
+            int start = i;
+            while (isalpha(str[i])) {
+                i++;
+            }
+            int end = i;
+
+            int k = 0;
+            while (start < end) {
+                words[j][k] = str[start];
+                k++;
+                start++;
+            }
+
+            j++;
+        }
+
+        i++;
+    }
+
+    for (int i = 0; i < j; i++) {
+        int vowelsCount = 0;
+        for (int k = 0; k < strlen(words[i]); k++) {
+            if (isVowel(words[i][k])) {
+                vowelsCount++;
+            }
+
+            vowels[i] = vowelsCount;
+        }
+
+        if (maxVowelsCount < vowelsCount) {
+            maxVowelsCount = vowelsCount;
+        }
+    }
+
+    for (int i = 0; i < j; i++) {
+        if (vowels[i] == maxVowelsCount) {
+            printf("%s\n", words[i]);
+        }
+    }
+
+    return 0;
+}

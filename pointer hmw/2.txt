@@ -1,0 +1,42 @@
+// 2
+
+#include <stdio.h>
+#include <stdbool.h>
+
+#define N  10
+
+bool check (int arr[], int num)
+{
+    for (int *p = arr; p < arr + N; p++) {
+        if (*p < num) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+int main()
+{
+    int x[N] = {10, 15, 20, -10, -15, -20, 6, 7, -9, 8};
+    int y[N];
+    int b = -30;
+    bool t = check(x, b);
+
+    int *py = y;
+    for (int *px = x; px < x + N; px++) {
+        if (t && *px > 0) {
+            *py = *px;
+            py++;
+        } else if (!t && *px < 0) {
+            *py = *px;
+            py++;
+        }
+    }
+
+    for (int *i = y; i < py; i++) {
+        printf("%d\n", *i);
+    }
+	
+	return 0;
+}

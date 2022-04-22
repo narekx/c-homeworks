@@ -1,0 +1,32 @@
+// 13
+
+#include <stdio.h>
+#include <ctype.h>
+
+int main () {
+    char str[] = "Hello, how are you?";
+    char *c = str;
+    while (*c != '\0') {
+        if (isalpha(*c)) {
+            char *s = c;
+            while (isalpha(*c)) {
+                c++;
+            }
+
+            char *e = c - 1;
+            while (s < e) {
+                char t = *s;
+                *s = *e;
+                *e = t;                             
+                s++;
+                e--;
+            }
+        }
+
+        c++;
+    }
+    
+    printf("%s\n", str);
+
+    return 0;
+}

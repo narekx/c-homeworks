@@ -1,0 +1,38 @@
+// N 4
+
+
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+bool isVowel(char c)
+{
+    char vowels[] = "aeiouy";
+    for (int i = 0; i < strlen(vowels); i++) {
+        if (c == vowels[i]) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+int main()
+{
+    char t[] = "asdeyaasd:dfgyidfgdfau:ie";  
+    int vowelsCount = 0;
+    bool start = false;
+    
+    for (int i = 0; i < strlen(t); i++) {
+        if (t[i] == ':' && !start) {
+            start = true;
+        }
+        
+        if (start && isVowel(t[i])) {
+            vowelsCount++;
+        }
+    }
+
+    printf("%d", vowelsCount);
+
+    return 0;
+}

@@ -1,0 +1,37 @@
+// 9
+
+#include "stdio.h"
+
+int main()
+{
+	int nums[5] = {1, 2, 3, 4, 5};
+	int counts[5];
+	int n = 5;
+	int maxCount = 0;
+	
+	for (int i = 0; i < n; i++) {
+	    int num = nums[i];
+	    int count = 0;
+	    while (num != 0) {
+	        if (num & 1 == 1) {
+	            count++;
+	        }
+	        num >>= 1;
+	    }
+	    counts[i] = count;
+	    if (count > maxCount) {
+	        maxCount = count;
+	    }
+	}
+	
+	for (int i = 1; i <= maxCount; i++) {
+	    printf("%d one\n", i);
+	    for (int j = 0; j < n; j++) {
+	        if (counts[j] == i) {
+	            printf("%d\n", nums[j]);
+	        }
+	    }    
+	}
+	
+	return 0;
+}

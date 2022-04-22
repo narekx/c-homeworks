@@ -1,0 +1,85 @@
+// 2
+
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+struct student {
+    char aah[15];
+    char ser[6];
+    int exams[5];
+    int pension;
+};
+
+int main()
+{
+    char subjects[5][14] = {"Math", "Phys", "History", "Biology", "Chemy"};
+    
+    struct student students[8] = {
+        {
+            "Narek",
+            "male",
+            {15, 14, 16, 18, 20}, 
+            5400
+        },
+        {
+            "Alex",
+            "male",
+            {10, 5, 7, 9, 15}, 
+            0
+        },
+        {
+            "Syuzanna",
+            "female",
+            {18, 18, 20, 20, 19}, 
+            5400
+        },
+        {
+            "Marieta",
+            "female",
+            {7, 8, 9, 14, 15}, 
+            0
+        },
+        {
+            "Vahe",
+            "male",
+            {5, 5, 13, 4, 19}, 
+            0
+        },
+        {
+            "Tigran",
+            "male",
+            {17, 18, 19, 10, 4}, 
+            0
+        },
+        {
+            "Diana",
+            "female",
+            {15, 14, 16, 18, 20}, 
+            5400
+        },
+        {
+            "Liana",
+            "female",
+            {16, 15, 10, 7, 15}, 
+            0
+        },
+    };
+    
+    for (int i = 0; i < 8; i++) {
+        bool isPrinted = false;
+        for (int j = 0; j < 5; j++) {
+            if (students[i].exams[j] < 8) {
+                if (!isPrinted) {
+                    printf("%s\n", students[i].aah);
+                    isPrinted = true;
+                } 
+                
+                printf("%s\n", subjects[j]);
+            }
+        }
+    }
+
+    return 0;
+}

@@ -1,0 +1,28 @@
+// 6
+
+#include "stdio.h"
+#include <stdbool.h>
+
+int main()
+{
+	int nums[10] = {2933, 3155, 6845, 7895, 1567};
+    
+    for (int i = 0; i < 5; i++) {
+        int num = nums[i];
+        bool hasFive = false;
+        num >>= 7;
+        int j = 0;
+        while (j < 5 && !hasFive) {
+            int x = num & 7;
+            if (x == 5) {
+                hasFive = true;
+                printf("%d\n", nums[i]);
+            }
+            
+            num >>= 1;
+            j++;
+        }
+    }
+
+	return 0;
+}

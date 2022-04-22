@@ -1,0 +1,110 @@
+// 1
+
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+struct date {
+    int day, year;
+    char month[10];
+};
+
+struct add {
+    char city[15];
+    char street[15];
+    int building;
+    int home;
+};
+
+struct ph {
+    char mobile[15];
+    char home[15];
+};
+
+struct person {
+    char aah[50];
+    struct date birthday;
+    struct add address;
+    struct ph phone;
+};
+
+bool check (struct person p)
+{
+    if (strcmp(p.address.city, "Vanadzor") != 0) {
+        return false;
+    }
+    
+    int currentYear = 2022;
+    if (currentYear - p.birthday.year < 21) {
+        return false;
+    }
+    
+    if (p.phone.mobile[0] != '0' || p.phone.mobile[1] != '9' || p.phone.mobile[2] != '5') {
+        return false;
+    }
+    
+    return true;
+}
+
+int main()
+{
+    struct person data[50] = {
+        {
+            "Narek",
+            {16, 2001, "oct"},
+            {"Vanadzor", "Shinararner", 13, 10},
+            {"095171759", "64576"}
+        },
+        {
+            "Davit",
+            {14, 2000, "sep"},
+            {"Erevan", "dgdfgdfg", 5, 7},
+            {"095878787", "54785"}
+        },
+        {
+            "Gevorg",
+            {5, 2003, "aug"},
+            {"Erevan", "fgdfgdfg", 9, 5},
+            {"093010101", "45467"}
+        },
+        {
+            "Nane",
+            {7, 2000, "feb"},
+            {"Vanadzor", "asdfdfgdfg", 56, 4},
+            {"095464646", "45678"}
+        },
+        {
+            "Astgh",
+            {14, 1999, "jan"},
+            {"Vanadzor", "dfgdfgd", 1, 1},
+            {"095876464", "56786"}
+        },
+        {
+            "Ani",
+            {18, 2000, "nov"},
+            {"Gyumri", "dsfds", 13, 10},
+            {"093939393", "54767"}
+        },
+        {
+            "Vahan",
+            {20, 1998, "jan"},
+            {"Erevan", "sdfsdf", 7, 7},
+            {"095959595", "45647"}
+        },
+        {
+            "Hakob",
+            {19, 2003, "sep"},
+            {"Vanadzor", "dasdas", 7, 7},
+            {"09878754", "65467"}
+        }
+    };
+    
+    for (int i = 0; i < 8; i++) {
+        if (check(data[i])) {
+            printf("%s\n", data[i].aah);
+        }
+    }
+
+    return 0;
+}

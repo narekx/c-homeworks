@@ -1,0 +1,25 @@
+// N 11
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char t[] = "qwertyuiopasdfghjklqwertyuiopasdfghjkl";
+    
+    for (int i = 0; i < strlen(t); i++) {
+        int j = i + 1;
+        while (j < strlen(t)) {
+            if (t[i] == t[j]) {
+                memmove(&t[j], &t[j + 1], strlen(t) - j);
+            } else {
+                j++;
+            }
+        }
+    }
+    
+    printf("%s", t);
+    
+    return 0;
+}

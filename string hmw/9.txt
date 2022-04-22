@@ -1,0 +1,41 @@
+// N 9
+
+
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+bool inString(char c, char str[])
+{
+    for (int i = 0; i < strlen(str); i++) {
+        if (c == str[i]) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+int main()
+{
+    char t1[] = "qwertyui";  
+    char t2[] = "qwertghjgyhki";
+    char sameLetters[40] = "";
+    int sameLettersCount = 0;
+    
+    for (int i = 0; i < strlen(t1); i++) {
+        int j = 0;
+        while (j < strlen(t2) && !inString(t1[i], sameLetters)) {
+            if (t1[i] == t2[j]) {
+                sameLetters[sameLettersCount] = t1[i];
+                sameLettersCount++;
+            }
+            
+            j++;
+        }
+    }
+
+    printf("%d", sameLettersCount);
+
+    return 0;
+}

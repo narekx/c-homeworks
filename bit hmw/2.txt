@@ -1,0 +1,30 @@
+// 2
+
+#include "stdio.h"
+#include <stdbool.h>
+
+int main()
+{
+	int num = 2933;
+	bool isFive = false;
+	int i = 0;
+	num >>= 7;
+	
+	while (i < 5 && !isFive) {
+	    int x = num & 7;
+	    if (x == 5) {
+	        isFive = true;
+	    }
+	    num >>= 1;
+	    i++;
+	}
+	
+    printf("%s\n", isFive ? "true" : "false");
+	
+	return 0;
+}
+
+
+// 101101110101
+// 10110
+// 00111

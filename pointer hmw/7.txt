@@ -1,0 +1,58 @@
+// 7
+
+#include <stdio.h>
+#include <stdbool.h>
+
+#define N  12
+
+bool isUnique (int *x, int *px)
+{
+    int *p = x;
+    while (p < x + N) {
+        if (*p == *px && p != px) {
+            return false;
+        }
+
+        p++;
+    }
+
+    return true;
+}
+
+bool inArray (int *x, int num, int *end) 
+{
+    int *p = x;
+    while (p < end) {
+        if (*p == num) {
+            return true;
+        }
+
+        p++;
+    }
+
+    return false;
+}
+
+int main()
+{
+    int x[N] = {2, 5, 6, 7, 5, 2, 4, 7, 1, 0, 2, 3};
+    int y[N];
+
+    int *py = y;
+
+    for (int *px = x; px < x + N; px++) {
+       if (!isUnique(x, px) && !inArray(y, *px, py)) {
+           *py = *px;
+           py++;
+       }
+    }
+
+    int sum = 0;
+    for (int *i = y; i < py; i++) {
+        sum += *i;
+    }
+
+    printf("%d\n", sum);
+	
+	return 0;
+}

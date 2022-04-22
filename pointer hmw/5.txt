@@ -1,0 +1,26 @@
+// 5
+
+#include <stdio.h>
+
+#define N  12
+
+int main()
+{
+    int a[N] = {2, 5, 6, 7, 0, 2, 5, 7, 6, 0, 2, 3};
+    int b[N];
+
+    int *py = b;
+    for (int *px = a; px < a + N; px++) {
+        *py = *px;
+        if (px > a) {
+            *py += *(py - 1);
+        }
+        py++;
+    }
+
+    for (int *i = b; i < py; i++) {
+        printf("%d\n", *i);
+    }
+	
+	return 0;
+}

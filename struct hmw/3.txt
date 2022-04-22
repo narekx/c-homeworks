@@ -1,0 +1,143 @@
+// 3
+
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+struct family {
+    bool partner;
+    int daughtersCount;
+    int sonsCount;
+};
+
+struct person {
+    char aah[15];
+    char ser[6];
+    struct family familyMembers;
+    int salary;
+};
+
+bool checkSalary(struct person m)
+{
+    int p = 280000;
+    int membersCount = 1;
+    if (m.familyMembers.partner) {
+        membersCount++;
+    }
+    
+    membersCount += m.familyMembers.daughtersCount + m.familyMembers.sonsCount;
+    
+    return m.salary / membersCount < p ? true : false;
+}
+
+bool check(struct person m)
+{
+    if (strcmp(m.ser, "male") != 0) {
+        return false;
+    }
+    
+    if (m.familyMembers.partner) {
+        return false;
+    }
+    
+    if (m.familyMembers.daughtersCount + m.familyMembers.sonsCount < 1) {
+        return false;  
+    }
+    
+    return checkSalary(m);
+}
+
+int main()
+{
+    struct person data[8] = {
+        {
+            "Karen",
+            "male",
+            {
+                false,
+                1,
+                0
+            },
+            150000
+        },
+        {
+            "Arsen",
+            "male",
+            {
+                true,
+                1,
+                0
+            },
+            300000
+        },
+        {
+            "Ashot",
+            "male",
+            {
+                false,
+                1,
+                2
+            },
+            200000
+        },
+        {
+            "Ani",
+            "female",
+            {
+                true,
+                1,
+                1
+            },
+            180000
+        },
+        {
+            "Arevik",
+            "female",
+            {
+                false,
+                0,
+                2
+            },
+            300000
+        },
+        {
+            "Davit",
+            "male",
+            {
+                false,
+                1,
+                2
+            },
+            3500000
+        },
+        {
+            "Karlen",
+            "male",
+            {
+                true,
+                1,
+                0
+            },
+            150000
+        },
+        {
+            "Sandra",
+            "female",
+            {
+                false,
+                0,
+                0
+            },
+            150000
+        },
+    };
+    
+    for (int i = 0; i < 8; i++) {
+        if (check(data[i])) {
+            printf("%s \n", data[i].aah);
+        }
+    }
+
+    return 0;
+}

@@ -1,0 +1,30 @@
+//  4
+
+#include <stdio.h>
+#include <stdbool.h>
+
+int main()
+{
+    char c = 'f';
+    
+    bool symmetric = true;
+    int i = 0;
+    while (i < 4 && symmetric) {
+        int f1 = c >> i & 1;
+        int f2 = c >> 7 - i & 1;
+
+        if (f1 != f2) {
+            symmetric = false;
+        }
+
+        i++;
+    }
+    
+    printf("%s", symmetric ? "true" : "false");
+
+    return 0;
+}
+
+// 01100110
+// 00000001
+//        1

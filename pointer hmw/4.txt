@@ -1,0 +1,31 @@
+// 4
+
+#include <stdio.h>
+
+#define N  12
+
+int main()
+{
+    int x[N] = {2, 5, 6, 7, 0, 2, 5, 7, 6, 0, 2, 3};
+    int y[N * 3];
+
+    int *py = y;
+    for (int *px = x; px < x + N; px++) {
+        *py = *px;
+        py++;
+        if (*px == 0) {
+            int i = 0;
+            while (i < 2) {
+                *py = 0;
+                py++;
+                i++;
+            }
+        }
+    }
+
+    for (int *i = y; i < py; i++) {
+        printf("%d\n", *i);
+    }
+	
+	return 0;
+}

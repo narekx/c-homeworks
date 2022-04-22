@@ -1,0 +1,19 @@
+// N 8
+
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char t[] = "qwertyui";  
+    char p[100] = "";
+    
+    for (int i = 0; i < strlen(t); i++) {
+        p[i] = t[strlen(t) - i - 1];
+    }
+
+    printf("%s", p);
+
+    return 0;
+}

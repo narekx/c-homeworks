@@ -1,0 +1,23 @@
+//      N:1
+
+#include <stdio.h>
+#include <string.h>
+
+int main()
+{
+    char t[100] = "qwxerxtyxuixoop";
+
+    for (int i = 0; i < strlen(t); i++) {
+        if (t[i] == 'x') {
+            for (int j = strlen(t); j > i + 1; j--) {
+                t[j] = t[j - 1];
+            }
+            t[i] = 'y';
+            t[i + 1] = 'y';
+        }
+    }
+    
+    printf("%s", t);
+
+    return 0;
+}

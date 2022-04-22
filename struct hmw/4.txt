@@ -1,0 +1,143 @@
+// 4
+
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+struct family {
+    bool partner;
+    int daughtersCount;
+    int sonsCount;
+};
+
+struct book {
+    char title[50];
+    unsigned int pages_count;
+    unsigned int price;
+};
+
+struct author {
+    char aah[15];
+    int books_count;
+    struct book books[20];
+};
+
+int main()
+{
+    int p =2000;
+    
+    struct author authors[5] = {
+        {
+            "Dan Brown",
+            2,
+            {
+                {
+                    "Inferno",
+                    150,
+                    2000
+                },
+                {
+                    "Da Vinci's Code",
+                    250,
+                    1800
+                }
+            }
+        },
+        {
+            "Agata Christie",
+            3,
+            {
+                {
+                    "Orient Express",
+                    180,
+                    1500
+                },
+                {
+                    "Death on the Nile",
+                    216,
+                    1800
+                },
+                {
+                    "The Pale Horse",
+                    300,
+                    2800
+                }
+            }
+        },
+        {
+            "Stephen King",
+            3,
+            {
+                {
+                    "It",
+                    300,
+                    3500
+                },
+                {
+                    "Pet Sematary",
+                    373,
+                    1500
+                },
+                {
+                    "The Shining",
+                    240,
+                    2000
+                }
+            }
+        },
+        {
+            "J.K. Rowling",
+            4,
+            {
+                {
+                    "Harry Potter and the Philosopher’s Stone",
+                    350,
+                    2000
+                },
+                {
+                    "Harry Potter and the Chamber of Secrets",
+                    400,
+                    3500
+                },
+                {
+                    "Harry Potter and the Prisoner of Azkaban",
+                    430,
+                    3500
+                },
+                {
+                    "Harry Potter and the Order of the Phoenix",
+                    150,
+                    2500
+                }
+            }
+        },
+        {
+            "Amy Tan",
+            2,
+            {
+                {
+                    "The Joy Luck Club",
+                    150,
+                    2500
+                },
+                {
+                    "Two Kinds",
+                    250,
+                    1500
+                }
+            }
+        }
+    };
+    
+    for (int i = 0; i < 5; i++) {
+        printf("%s\n", authors[i].aah);
+        for (int j = 0; j < authors[i].books_count; j++) {
+            if (authors[i].books[j].pages_count > 200 && authors[i].books[j].price <= p) {
+                printf("%s\n", authors[i].books[j].title);
+            }
+        }
+    }
+
+    return 0;
+}

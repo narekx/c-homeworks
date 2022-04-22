@@ -1,0 +1,42 @@
+// 14
+
+#include <stdio.h>
+#include <ctype.h>
+#include <stdbool.h>
+
+int main () {
+    char *str = "popop hop lili nanan huhuh";
+    char *c = str;
+    while (*c != '\0') {
+        if (isalpha(*c)) {
+            char *s = c;
+            char *p = c;
+            while(isalpha(*c)) {
+                c++;
+            }
+
+            char *e = c - 1;
+            bool palindrom = true;
+            while (s < e && palindrom) {
+                if (*s != *e) {
+                    palindrom = false;
+                }
+
+                s++;
+                e--;
+            }
+
+            if (palindrom) {
+                while (isalpha(*p)) {
+                    printf("%c", *p);
+                    p++;
+                }
+                printf("\n");
+            }
+        }
+        
+        c++;
+    }
+
+    return 0;
+}

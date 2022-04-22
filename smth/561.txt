@@ -1,0 +1,41 @@
+// 561
+
+
+#include <stdio.h>
+#include <stdbool.h>
+
+#define m 3
+#define n 4
+
+int main() {
+    int arr[m][n] = {
+        {5, 6, 7, 8},
+        {4, 8, 16, 10}, 
+        {10, 8, 4, 2}
+    };
+    
+    int pairRow = -1;
+    int i = 0;
+    while (i < m && pairRow == -1) {
+        bool isPair = true;
+        int j = 0;
+        while (j < n && isPair) {
+            if (arr[i][j] % 2 != 0) {
+                isPair = false;
+            }
+            j++;
+        }
+        if (isPair) {
+            pairRow = i;
+        }
+        
+        i++;
+    }
+    
+    if (pairRow != -1) {
+        printf("%d", pairRow);    
+    } else {}
+    printf("NO");
+    
+    return 0;
+}

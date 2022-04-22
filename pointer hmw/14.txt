@@ -1,0 +1,25 @@
+// 14
+
+#include <stdio.h>
+
+#define N  7
+
+int main()
+{
+    int x[N] = {7, 5, 4, 6, 3, 2, 1};
+
+    for (int *p = x; p < x + N - 1; p++) {
+        if (*p < *(p + 1)) {
+            int t = *(p + 1);
+            *(p + 1) = *p;
+            *p = t;
+            p = x;
+        }
+    }
+
+    for (int *p = x; p < x + N; p++) {
+        printf("%d\n", *p);
+    }
+
+	return 0;
+}

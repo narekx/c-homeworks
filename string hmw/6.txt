@@ -1,0 +1,48 @@
+// N 6
+
+
+#include <stdio.h>
+#include <string.h>
+
+
+int main()
+{
+    char t[] = "qwerptyuioasdfghjklzxcvbnmp";
+    int firstIndex = -1;
+    int lastIndex = -1;
+    
+    int i = 0;
+    while (i < strlen(t) && firstIndex == -1) {
+        if (t[i] == 'p') {
+            firstIndex = i;
+        }
+        
+        i++;
+    }
+    
+    i = strlen(t) - 1;
+    while (i > firstIndex && lastIndex == -1) {
+        if (t[i] == 'p') {
+            lastIndex = i;
+        }
+        
+        i--;
+    }
+
+    if (firstIndex == -1 || lastIndex == -1) {
+        printf("%s", "Error. No p symbol");    
+    } else {
+        int count = 0;
+        
+        for (int i = firstIndex; i < lastIndex; i++) {
+            if (t[i] < 'p') {
+                count++;
+            }
+        }
+        
+        printf("%d", count);
+    }
+    
+
+    return 0;
+}

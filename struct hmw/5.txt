@@ -1,0 +1,171 @@
+// 5
+
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+
+struct movie {
+    char title[50];
+    unsigned int count; 
+    char start[8];
+    char end[8];
+};
+
+struct cinema {
+    char name[50];
+    int movies_count;
+    struct movie movies[20];
+    char address[50];
+};
+
+int main()
+{
+    struct cinema cinemas[5] = {
+        {
+            "Cinema Star",
+            3,
+            {
+                {
+                    "Bronx Tale",
+                    2,
+                    "14:30",
+                    "17:00"
+                },
+                {
+                    "Spider Man No Way Home",
+                    1,
+                    "17:00",
+                    "19:30"
+                },
+                {
+                    "Inferno",
+                    3,
+                    "19:30",
+                    "23:00"
+                }
+            },
+            "asdasdasdasd"
+        },
+        {
+            "iMax",
+            4,
+            {
+                {
+                    "Bronx Tale",
+                    1,
+                    "12:00",
+                    "13:30"
+                },
+                {
+                    "Mad Max",
+                    4,
+                    "13:30",
+                    "18:00"
+                },
+                {
+                    "Joker",
+                    1,
+                    "18:00",
+                    "20:00"
+                },
+                {
+                    "The Godfather",
+                    1,
+                    "20:00",
+                    "23:30"
+                }
+            },
+            "asdasdasd"
+        },
+        {
+            "Artcraft Theatre",
+            2,
+            {
+                {
+                    "Call me by your name",
+                    1,
+                    "12:00",
+                    "14:30"
+                },
+                {
+                    "Mad Max",
+                    3,
+                    "14:00",
+                    "18:00"
+                }
+            },
+            "asdasdasd"
+        },
+        {
+            "Popcorn Theatre",
+            3,
+            {
+                {
+                    "Venom",
+                    2,
+                    "12:00",
+                    "16:00"
+                },
+                {
+                    "Dorian Gray",
+                    1,
+                    "14:00",
+                    "16:30"
+                },
+                {
+                    "Ocean's Eleven",
+                    2,
+                    "16:30",
+                    "18:30"
+                }
+            },
+            "sadasdasd"
+        },
+        {
+            "NoFantasy Theatre",
+            4,
+            {
+                {
+                    "Mad Max",
+                    2,
+                    "12:00",
+                    "16:00"
+                },
+                {
+                    "Black Swallow",
+                    1,
+                    "14:00",
+                    "16:30"
+                },
+                {
+                    "Titanic",
+                    2,
+                    "16:30",
+                    "18:30"
+                },
+                {
+                    "Bronx Tale",
+                    2,
+                    "16:30",
+                    "18:30"
+                }
+            },
+            "sadasdasd"
+        }
+    };
+    
+    char search[] = "Mad Max";
+    
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < cinemas[i].movies_count; j++) {
+            if (strcmp(cinemas[i].movies[j].title, search) == 0) {
+                printf("%s\n", cinemas[i].name);
+                printf("%s\n", cinemas[i].address);
+                printf("%s - %s\n", cinemas[i].movies[j].start, cinemas[i].movies[j].end);
+            }
+        }
+    }
+
+    return 0;
+}

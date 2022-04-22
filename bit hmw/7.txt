@@ -1,0 +1,26 @@
+// 7
+
+#include "stdio.h"
+#include <stdbool.h>
+
+int main()
+{
+	int nums[5] = {48059, 58339, 61895, 35648, 78945};
+	
+	for (int i = 0; i < 5; i++) {
+	    int num = nums[i];
+	    int mask = 255;
+	    int firstPart = num & mask;
+	    num >>= 8;
+	    int secondPart = num & mask; 
+	    if (firstPart == secondPart) {
+	        printf("%d\n", nums[i]);
+	    }
+	}
+	
+	return 0;
+}
+
+
+// 1011101110111011
+// 0000000011111111
