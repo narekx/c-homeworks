@@ -31,6 +31,8 @@ int delete_column (int (*arr)[M], int column, int row_lentgh, int column_length)
     for (int i = column; i < column_length - 1; i++) {
         change_column_values(arr, i, i + 1, row_lentgh);
     }
+
+    return 0;
 }
 
 int main()
