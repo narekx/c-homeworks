@@ -51,9 +51,9 @@ int main()
         if (check_minus(arr, i, n)) {
             delete_column(arr, i, n, m);
             m--;
+        } else {
+            i++;
         }
-
-        i++;
     }
     
     for (int i = 0; i < n; i++)
