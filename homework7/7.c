@@ -15,8 +15,8 @@ int main ()
     char s[100] = "sd56sdfsdf78sdf123sdf543s3000s";
     int sum = 0;
     int count = 0;
-    int i = 0;
 
+    int i = 0;
     while (i < strlen(s)) {
         if (isdigit(s[i])) {
             count++;
@@ -26,7 +26,6 @@ int main ()
             count = 0;
             sum += atoi(temp);
         }
-
 
         i++;
     }
