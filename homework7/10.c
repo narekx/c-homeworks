@@ -2,40 +2,46 @@
 #include <string.h>
 #include <stdbool.h>
 
-int push_right (char *str, int index, int dif)
+void push_right (char *str, int index, int dif)
 {
     int i = strlen(str) + dif;
-    while (i > index) {
+    while (i > index + dif) {
         str[i] = str[i - dif];
-        printf("%c\n", str[i]);
         i--;
     }
-
-    return 0;
 }
 
 int main ()
 {
     char str[100] = "asddfsghsdf sdfgsdfg dsfg dsfgsdf dfsg sdfgsdfg dsfgsdfg";
+    char newStr[100] = "";
 
-    int start = 0;
-    int end = 0;
-    while (end <= strlen(str)) {
-        if (str[end] == ' ' || str[end] == '\0') {
-            char length[2];
-            sprintf(length, "%d", end - start);
-            push_right(str, end, strlen(length));
-            break;
-            str[end] = '&';
-            end++;
-            start = end + 1;
+    int count = 0;
+    int i = 0;
+    while (i < strlen(str)) {
+        if (str[i] != ' ') {
+            count++;
         }
 
-        end++;
+        if (str[i + 1] == ' ' || str[i + 1] == '\0') {
+            char word_length[3];
+            sprintf(word_length, "%d", count);
+            push_right(str, i, strlen(word_length));
+            i++;
+            int j = 0;
+            while (j < strlen(word_length)) {
+                str[i] = word_length[j];
+                j++;
+                i++;
+            }
+
+            count = 0;
+        }
+
+        i++;
     }
 
     printf("%s\n", str);
-
 
     return 0;
 }
