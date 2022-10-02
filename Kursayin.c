@@ -7,14 +7,17 @@
 #define START_Y  5
 #define TAB 4
 
+// Timeout
 void timeout() {
 	for (double k = 1; k < 1e+7; k++);
 }
 
-bool isZero(int *arr, int i) {
+// Check array diagonal element is zero
+bool isZero(int* arr, int i) {
 	return arr[i] == 0 || arr[N - i - 1] == 0;
 }
 
+// Move by x
 int moveX(int num, int to, COORD pos, HANDLE* hConsole) {
 	int step = TAB / 2;
 	step = pos.X < to ? step : step * -1;
@@ -30,6 +33,7 @@ int moveX(int num, int to, COORD pos, HANDLE* hConsole) {
 	return pos.X;
 }
 
+// Move by y
 int moveY(int num, int to, COORD pos, HANDLE* hConsole) {
 	int step = 1;
 	step = pos.Y < to ? step : step * -1;
@@ -48,27 +52,35 @@ int moveY(int num, int to, COORD pos, HANDLE* hConsole) {
 
 int main()
 {
+	// Get coords
 	COORD pos;
+
+	// Get console
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
+	// Matrix initialize
 	int matrix[N][N] = {
 		{1, 2, 3, 4},
 		{5, 6, 0, 8},
-		{9, 10, 7, 12},
+		{9, 10, 0, 12},
 		{0, 14, 15, 16}
 	};
 
+	// Vector
 	int vector[N * N];
+
+	// Vector length
 	int m = 0;
 
+	// Initialize start position
 	pos.X = START_X;
 	pos.Y = START_Y;
 	SetConsoleCursorPosition(hConsole, pos);
 
-	for (int i = 0; i < N; i++)	{
+	// Print matrix
+	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < N; j++) {
 			SetConsoleCursorPosition(hConsole, pos);
-			//printf("%d", matrix[i][j]);
 			printf("%d", matrix[i][j]);
 			pos.X += 2 * TAB;
 			timeout();
@@ -77,6 +89,10 @@ int main()
 		pos.Y += TAB;
 	}
 
+	// Set color to green
+	SetConsoleTextAttribute(hConsole, 2);
+
+	// Create vector
 	for (int i = 0; i < N; i++) {
 		if (!isZero(&matrix[i], i)) {
 			continue;
@@ -85,11 +101,11 @@ int main()
 		for (int j = 0; j < N; j++) {
 			pos.X = START_X + TAB * 2 * j;
 			pos.Y = START_Y + TAB * i;
-			SetConsoleCursorPosition(hConsole, pos);
+			
 			pos.Y = moveY(matrix[i][j], pos.Y - 2, pos, hConsole);
-			pos.X = moveX(matrix[i][j], START_X - TAB, pos, hConsole);
+			pos.X = moveX(matrix[i][j], pos.X - TAB * 2 * (j + 1), pos, hConsole);
 			pos.Y = moveY(matrix[i][j], pos.Y + (N - i) * TAB, pos, hConsole);
-			pos.X = moveX(matrix[i][j], START_X + (TAB * 2 * m), pos, hConsole);
+			pos.X = moveX(matrix[i][j], pos.X + TAB * 2 * (m + 1), pos, hConsole);
 			pos.Y = moveY(matrix[i][j], pos.Y + TAB / 2, pos, hConsole);
 			SetConsoleCursorPosition(hConsole, pos);
 			printf("%d", matrix[i][j]);
